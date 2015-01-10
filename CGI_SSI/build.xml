@@ -1,0 +1,58 @@
+<!--
+   build.xml file for SER422 Spring 2014.
+   Copyright 2014 Kevin A. Gary
+
+   This build.xml works with the CGI examples on my Mac.
+   You will have to modify paths to make it work on your machine.
+-->
+
+<project name="CGI_SSI" default="deploy" basedir=".">
+	<property name="cgiscripts.dir" value="cgiscripts" />
+	<property name="doc.dir" value="Documents" />
+	<property name="cgi.deploy" value="CGI-Executables" />
+	<property name="doc.deploy" value="Documents" />
+	<property name="java.dir" value="src" />
+	<property name="classes.dir" value="classes" />
+	<property name="apache.deploy" value="/Library/WebServer/" />
+
+  <!-- prepare target makes the directory structure. You may not
+       require this if you set your environment up by hand. -->
+  <target name="prepare">
+    <tstamp/>
+    <mkdir dir="${classes.dir}"/>
+  </target>
+
+  <!-- Compiles your java files and puts the classes in classes.dir -->
+  <target name="compile" depends="prepare">
+    <javac
+      srcdir="${java.dir}"
+      destdir="${classes.dir}">
+      <!-- Make sure you set your classpath! -->
+      <classpath>
+        <pathelement path="${classes.dir}" />
+      </classpath>
+    </javac>
+  </target>
+
+  <!-- The deploy target copies files to the apache HTTP server's deploy dir -->
+  <target name="deploy" depends="compile">
+    <copy todir="${apache.deploy}/${doc.deploy}" overwrite="yes" >
+  		<fileset dir="${doc.dir}" />
+    </copy>
+    <copy todir="${apache.deploy}/${cgi.deploy}" overwrite="yes" >
+  		<fileset dir="${cgiscripts.dir}" />
+    </copy>
+    <copy todir="${apache.deploy}/${cgi.deploy}/../${classes.dir}" overwrite="yes" >
+  		<fileset dir="${classes.dir}" />
+    </copy>
+  </target>
+      
+  <!-- Clean -->
+  <!-- NOTE: This needs some work, we really need to undeploy the app in TC -->
+  <target name="clean">
+	<delete dir="${classes.dir}"/>
+  </target>
+
+</project>
+  
+

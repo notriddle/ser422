@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Perl Phonebook</h1>
+
+<p>This page demonstrates a perl CGI script.</p>
+
+<form name="add" method="get"  action="./cgi-bin/perlPhone.pl">
+First name: <input type="text" name="fname"><br>
+Last name: <input type="text" name="lname"><br>
+Phone: <input type="text" name="phone"><br>
+<input type="submit" value="add">
+<input type="hidden" name="action" value="add">
+</form>
+<p> <br> <br> </p>
+
+<form name="list" method="get"  action="http://localhost/cgi-bin/perlPhone.pl">
+First name: <input type="text" name="fname"><br>
+<input type="submit" value="list">
+<input type="hidden" name="action" value="list">
+</form>
+<p> <br> </p>
+
+<p> Unavailable </p>
+<form name="remove" method="get"  action="http://localhost/cgi-bin/perlPhone.pl">
+Phone: <input type="text" name="phone"><br>
+<input type="submit" value="remove">
+<input type="hidden" name="action" value="remove">
+</form>
+<p> <br> </p>
+
+</body>
+</html>
+

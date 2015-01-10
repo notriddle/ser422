@@ -1,0 +1,11 @@
+<H3>exec ls -al</H3> 
+<pre><!--#exec cmd="ls -al"--></pre> 
+<h3>Simple conditional</h3>
+<!--#echo var="DATE_LOCAL"--> 
+<!--#if expr="\"$DATE_LOCAL\" = /Monday/" -->
+	<P>The DATE_LOCAL contains the word Monday somewhere.</P>
+<!--#else-->
+	<P>The DATE_LOCAL DOES NOT contains the word Monday somewhere.</P>
+<!--#endif-->
+<H3>Last time this file was modified</H3>
+This file was last modified on <!--#flastmod file="ssitest.shtml"-->

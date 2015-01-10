@@ -1,0 +1,21 @@
+<HTML><HEAD><Title>TestForm- sample interface to printenv</Title></Head>
+<Body bgcolor="white">
+<p>Here is a sample form that will invoke the printenv CGI on the result:</p>
+<p><FORM ACTION="/cgi-bin/env.pl" METHOD="Get">
+<Input type="hidden" name="hidden1" value="this is a hidden variable">
+Enter some text: <Input Type="Text" Name="textbox" Size=15><br>
+<TextArea Name="textarea" Rows=5 Cols=50>Enter some longer text here</TextArea><br>
+Check a box:
+<Input Type="radio" Name="radio1" Value="button1">button 1</input>
+<Input Type="radio" Name="radio1" Value="button2">button 2</input>
+<Input Type="radio" Name="radio1" Value="button3">button 3</input><br>
+<Select Name="popup" Size=1>
+<Option Selected>Choice 1
+<Option>Choice 2
+<Option>Choice 3
+<Option>Choice 4
+<Option>Choice 5
+</Select><br>
+<input type="submit"><input type="reset">
+</Form></Body></HTML>
+
