@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 
 public class DemoSiteSelector extends HttpServlet{
     
-    Vector sites = new Vector();
+    Vector<String> sites = new Vector();
     Random random = new Random();
     
     public void init(ServletConfig config)throws ServletException{

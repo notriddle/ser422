@@ -15,7 +15,7 @@
   
   <servlet-mapping>
     <servlet-name>DateMe</servlet-name>
-    <url-pattern>/date</url-pattern>
+    <url-pattern>date</url-pattern>
   </servlet-mapping>
  <!-- This is just an example of other things you can do -->
   <mime-mapping>
