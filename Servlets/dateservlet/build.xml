@@ -1,6 +1,6 @@
 <!--
-   build.xml file for SER422 Spring 2014
-   Copyright 2014 Kevin A. Gary
+   build.xml file for SER422 Spring 2015
+   Copyright 2015 Kevin A. Gary
 
    This build.xml does most of the things asked of you in the
    submission guidelines document. However, you may need to 
@@ -16,8 +16,10 @@
        require this if you set your environment up by hand. -->
   <target name="init">
     <tstamp/>
+    <mkdir dir="lib"/>
     <mkdir dir="${classes.dir}"/>
     <mkdir dir="${javadoc.dir}"/>
+    <mkdir dir="${properties.dir}"/>
   </target>
 
   <!-- Compiles your java files and puts the classes in classes.dir -->
@@ -79,7 +81,7 @@
              version="true"
              windowtitle="Lab 2 APIs"
              doctitle="InClass"
-             bottom="Copyright 2005 Kevin Gary" />
+             bottom="Copyright 2015 Kevin Gary" />
   </target>
 
   <!-- Clean -->
