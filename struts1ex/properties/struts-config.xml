@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+  <form-beans>
+    <form-bean name="entryFormBean" type="edu.asupoly.cst425.lab4.formbeans.EntryFormBean"/>
+  </form-beans>
+  <global-exceptions> 
+   		<exception key="key1"  
+              type="java.lang.NullPointerException"  
+              path="/WEB-INF/nullexception.jsp"/> 
+   		<exception key="key2"  
+              type="java.lang.Exception"  
+              path="/WEB-INF/genericexception.jsp"/> 
+  </global-exceptions>
+  <action-mappings>
+    <action path="/list" type="edu.asupoly.cst425.lab4.actions.ListAction">
+      <forward name="showlist" path="/WEB-INF/showlist.jsp"/>
+    </action>
+    <action path="/remove" type="edu.asupoly.cst425.lab4.actions.RemoveAction">
+    	<forward name="success" path="/index.jsp" redirect="true" />
+    </action>
+    <action path="/editsetup" type="edu.asupoly.cst425.lab4.actions.EditSetupAction"
+    	name="entryFormBean" scope="request" validate="false">
+    	<forward name="success" path="/edit.jsp" />
+    	<forward name="nophone" path="/index.jsp" redirect="true" />
+    </action>
+    <action path="/edit" type="edu.asupoly.cst425.lab4.actions.EditAction"
+    	name="entryFormBean" scope="request" input="/edit.jsp" >
+    	<forward name="success" path="/index.jsp" redirect="true" />
+    </action>
+    <action path="/add" type="edu.asupoly.cst425.lab4.actions.AddAction"
+    	name="entryFormBean" scope="request" input="/add.jsp">
+    	<forward name="success" path="/index.jsp" redirect="true" />
+    </action>
+  </action-mappings>
+  <message-resources parameter="MessageResources" null="false"/>
+</struts-config>
+
