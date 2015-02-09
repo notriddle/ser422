@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<pattern id="abstractfactory">
+ <role name="AbstractFactory"/>
+ <role name="ConcreteFactory"/>
+ <role name="AbstractProduct"/>
+ <role name="ConcreteProduct"/>
+ <role name="Client"/>
+</pattern>

@@ -45,6 +45,6 @@ public class UserDAO {
 	}
 	
 	private UserDAO() {
-		users = new Hashtable();
+		users = new Hashtable<String, Vector<Book>>();
 	}
 }

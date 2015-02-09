@@ -33,7 +33,7 @@ public class BookDAO  {
 		return result;
 	}
 	
-	public void setBookIds(List bookIds) {
+	public void setBookIds(List<String> bookIds) {
 		throw new UnsupportedOperationException("Call setBooks instead");
 	}
 	
