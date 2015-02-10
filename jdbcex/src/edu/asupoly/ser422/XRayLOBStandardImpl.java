@@ -1,27 +1,25 @@
-package edu.asupoly.cst533;
+package edu.asupoly.ser422;
 
 import java.io.IOException;
 import java.io.File;
 import java.io.InputStream;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
-
 import java.sql.Timestamp;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import edu.asupoly.cst533.Cst533DbWrapperException;
-import edu.asupoly.cst533.Cst533DbUtils;
+import edu.asupoly.ser422.Ser422DbUtils;
+import edu.asupoly.ser422.Ser422DbWrapperException;
 
 public final class XRayLOBStandardImpl implements IXRayService {
     private static final int __BUFSIZE = 2048;
 
     public boolean readXRayImage(int id, File outfile)
-            throws Cst533DbWrapperException {
+            throws Ser422DbWrapperException {
         byte[] buf = new byte[__BUFSIZE];
-        int numBytesRead = 0;
         int numRead = 0;
 
         if (outfile.exists() && !outfile.canWrite()) {
@@ -29,7 +27,7 @@ public final class XRayLOBStandardImpl implements IXRayService {
         }
 
         boolean oldAutoCommit = false;
-        Connection conn = Cst533DbUtils.getConnection("kgary", "blah", "jdbc:postgresql://localhost/lobtest", "org.postgresql.Driver");
+        Connection conn = Ser422DbUtils.getConnection("kgary", "blah", "jdbc:postgresql://localhost/lobtest", "org.postgresql.Driver");
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
@@ -48,7 +46,6 @@ public final class XRayLOBStandardImpl implements IXRayService {
                 os = new FileOutputStream(outfile);
 
                 while ((numRead = is.read(buf)) != -1) {
-                    numBytesRead += numRead;
                     // push them back out to the output file
                     os.write(buf, 0, numRead);
                     os.flush(); // flush if we're buffered
@@ -64,17 +61,17 @@ public final class XRayLOBStandardImpl implements IXRayService {
             pstmt.close();
             pstmt = null;
             conn.setAutoCommit(oldAutoCommit);
-            Cst533DbUtils.releaseConnection(conn);
+            Ser422DbUtils.releaseConnection(conn);
             conn = null;
             return true;
         } catch (IOException ie) {
             System.err.println("IO Exception reading Xray with id: " + id
                     + ", message: " + ie.getMessage());
-            throw new Cst533DbWrapperException(ie);
+            throw new Ser422DbWrapperException(ie);
         } catch (SQLException se) {
             System.err.println("SQL Exception reading Xray with id: " + id
                     + ", message: " + se.getMessage());
-            throw new Cst533DbWrapperException(se);
+            throw new Ser422DbWrapperException(se);
         } finally {
             try {
                 if (os != null)
@@ -103,7 +100,7 @@ public final class XRayLOBStandardImpl implements IXRayService {
             try {
                 if (conn != null) {
                     conn.setAutoCommit(oldAutoCommit);
-                    Cst533DbUtils.releaseConnection(conn);
+                    Ser422DbUtils.releaseConnection(conn);
                     conn = null;
                 }
             } catch (Throwable t4) {
@@ -114,15 +111,15 @@ public final class XRayLOBStandardImpl implements IXRayService {
     }
 
     public boolean readXRayDiagnosis(int id, File file)
-            throws Cst533DbWrapperException {
+            throws Ser422DbWrapperException {
         return false;
     }
 
     public boolean writeXRayImage(int id, File file)
-            throws Cst533DbWrapperException {
+            throws Ser422DbWrapperException {
         FileInputStream fis = null;
         PreparedStatement ps = null;
-        Connection conn = Cst533DbUtils.getConnection("kgary", "blah", "jdbc:postgresql://localhost/lobtest", "org.postgresql.Driver");
+        Connection conn = Ser422DbUtils.getConnection("kgary", "blah", "jdbc:postgresql://localhost/lobtest", "org.postgresql.Driver");
         boolean oldAutoCommit = true;
 
         try {
@@ -140,10 +137,10 @@ public final class XRayLOBStandardImpl implements IXRayService {
             fis.close();
 
             conn.setAutoCommit(oldAutoCommit);
-            Cst533DbUtils.releaseConnection(conn);
+            Ser422DbUtils.releaseConnection(conn);
             conn = null;
         } catch (Throwable t) {
-            throw new Cst533DbWrapperException(
+            throw new Ser422DbWrapperException(
                     "XRayLOBStandardImpl::writeXRayImage", t);
         } finally {
             try {
@@ -155,7 +152,7 @@ public final class XRayLOBStandardImpl implements IXRayService {
             try {
                 if (conn != null) {
                     conn.setAutoCommit(oldAutoCommit);
-                    Cst533DbUtils.releaseConnection(conn);
+                    Ser422DbUtils.releaseConnection(conn);
                     conn = null;
                 }
             } catch (Throwable t4) {
@@ -166,7 +163,7 @@ public final class XRayLOBStandardImpl implements IXRayService {
     }
 
     public boolean writeXRayDiagnosis(int id, File file)
-            throws Cst533DbWrapperException {
+            throws Ser422DbWrapperException {
         return false;
     }
 

@@ -1,14 +1,15 @@
-package edu.asupoly.cst533.jdbcex;
+package edu.asupoly.ser422.jdbcex;
 
 import java.sql.*;
-import edu.asupoly.cst533.Cst533DbUtils;
+
+import edu.asupoly.ser422.Ser422DbUtils;
 
 /*
  */
 public class JDBCProcEx1 {
     public static void main(String[] args) {
         if (args.length < 5) {
-            System.out.println("USAGE: java edu.asupoly.cst533.jdbcex.JDBCProcEx1 <driver><url><username><passwd><procname><result type>[<args>]");
+            System.out.println("USAGE: java edu.asupoly.ser422.jdbcex.JDBCProcEx1 <driver><url><username><passwd><procname><result type>[<args>]");
             System.exit(0);
         }
 
@@ -56,7 +57,7 @@ public class JDBCProcEx1 {
                 if (rs == null) {
                     System.out.println("rs was null");
                 } else {
-                    Cst533DbUtils.printResultSet(rs);
+                    Ser422DbUtils.printResultSet(rs);
                 }
             } else if (outType==Types.INTEGER) {
                 int result = stmt.getInt(1);

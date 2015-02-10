@@ -1,40 +1,38 @@
-package edu.asupoly.cst533.jdbcex;
+package edu.asupoly.ser422.jdbcex;
 
 import java.sql.*;
-import java.net.*;
 
 /*
 This sample program connects to the database at the given URL and makes the specified query.
-It takes as parameters the url, username, password, driver, and the dept name.
+It takes as parameters the username and password.
 */
-public class DeptQueryByName
+public class DeptQuery
 {
     public static void main(String[] args)
     {
 
 	ResultSet rs = null;
-	PreparedStatement stmt = null;
+	Statement stmt = null;
 	Connection conn = null;
 
-	if (args.length != 5)
+	if (args.length != 3)
 	    {
-		System.out.println("USAGE: java edu.asupoly.cst533.jdbcex.DeptQueryByName <url> <user> <passwd> <driver> <dept name>");
+		System.out.println("USAGE: java edu.asupoly.ser422.jdbcex.DeptQuery <user> <passwd> <url>");
 		System.exit(0);
 	    }
-	String _url = args[0];
+	String _url = args[2];
 	try {
 	    // Step 1: Load the JDBC driver
-	    Class.forName(args[3]);
+	    Class.forName("org.postgresql.Driver");
 
 	    // Step 2: make a connection
-	    conn = DriverManager.getConnection(_url, args[1], args[2]);
+	    conn = DriverManager.getConnection(_url, args[0], args[1]);
 
 	    // Step 3: Create a statement
-	    stmt = conn.prepareStatement("Select * from Department WHERE dname=?");
-	    stmt.setString(1, args[4]);
+	    stmt = conn.createStatement();
 
 	    // Step 4: Make a query
-	    rs = stmt.executeQuery();
+	    rs = stmt.executeQuery("Select * from Department");
 
 	    // Step 5: Display the results
 	    while (rs.next()) {
@@ -56,11 +54,11 @@ public class DeptQueryByName
 		System.out.println(rs.getDate("date"));
 	    }
 	    */
-	    // Step 7: Close the resultset and statement
-	    rs.close();
-	    rs = null;
+	    // Step 7: Close the statement & result set
 	    stmt.close();
 	    stmt = null;
+	    rs.close();
+	    rs = null;
 	}
 	catch (Exception exc)
 	    {
@@ -72,15 +70,11 @@ public class DeptQueryByName
 		    rs.close();
 		if (stmt != null)
 		    stmt.close();
-	    } catch (Throwable t1) {
-		System.out.println("A problem closing db resources!");
-	    }
-	    try {
 		if (conn != null)
 		    conn.close();
 	    }
-	    catch (Throwable t2) {
-		System.out.println("Oh-oh! Connection leaked!");
+	    catch (SQLException se) {
+		se.printStackTrace();
 	    }
 	}
     }

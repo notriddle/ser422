@@ -1,19 +1,19 @@
-package edu.asupoly.cst533.jdbcex;
+package edu.asupoly.ser422.jdbcex;
 
 import java.io.*;
 
-import edu.asupoly.cst533.Cst533DbWrapperException;
-import edu.asupoly.cst533.IXRayService;
-import edu.asupoly.cst533.XRayLOBStandardImpl;
-import edu.asupoly.cst533.XRayLOBPostgresImpl;
-import edu.asupoly.cst533.XRayLOBJavaImpl;
+import edu.asupoly.ser422.Ser422DbWrapperException;
+import edu.asupoly.ser422.IXRayService;
+import edu.asupoly.ser422.XRayLOBJavaImpl;
+import edu.asupoly.ser422.XRayLOBPostgresImpl;
+import edu.asupoly.ser422.XRayLOBStandardImpl;
 
 public class LOBTest {
 
     public static void main(String[] args) {
 
         if (args.length != 4) {
-            System.out.println("USAGE: java edu.asupoly.cst533.jdbcex.LOBTest read|write  s|p|j <id> <filename>, where s is Standard impl, p is Postgres LargeObject, and J is Java.sql.Blob");
+            System.out.println("USAGE: java edu.asupoly.ser422.jdbcex.LOBTest read|write  s|p|j <id> <filename>, where s is Standard impl, p is Postgres LargeObject, and J is Java.sql.Blob");
             System.exit(0);
         }
 
@@ -47,7 +47,7 @@ public class LOBTest {
                 }
             }
 
-        } catch (Cst533DbWrapperException we) {
+        } catch (Ser422DbWrapperException we) {
             we.printStackTrace();
             Throwable t = we.getCause();
             if (t != null) {

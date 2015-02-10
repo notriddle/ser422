@@ -1,4 +1,4 @@
-package edu.asupoly.cst533.jdbcex;
+package edu.asupoly.ser422.jdbcex;
 
 import java.sql.*;
 
@@ -9,7 +9,7 @@ public class BatchInsertTest {
 		Statement  stmt = null;
 
 		if (args.length != 6) {
-			System.out.println("USAGE: java edu.asu.cet533.examples.BatchInsertTest <driver><url><user><passwd><num tuples><init id>");
+			System.out.println("USAGE: java edu.asu.ser422.jdbcex.BatchInsertTest <driver><url><user><passwd><num tuples><init id>");
 			System.exit(0);
 		}
 

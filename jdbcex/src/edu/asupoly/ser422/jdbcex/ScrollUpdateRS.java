@@ -1,7 +1,8 @@
-package edu.asupoly.cst533.jdbcex;
+package edu.asupoly.ser422.jdbcex;
 
 import java.sql.*;
-import edu.asupoly.cst533.Cst533DbUtils;
+
+import edu.asupoly.ser422.Ser422DbUtils;
 
 public class ScrollUpdateRS {
     public static void main(String[] args) {
@@ -11,7 +12,7 @@ public class ScrollUpdateRS {
 	ResultSet  rs   = null;
 
 	if (args.length != 6) {
-	    System.out.println("USAGE: java edu.asu.cet533.examples.ScrollUpdateRS <driver><url><user><passwd><query><update string>");
+	    System.out.println("USAGE: java edu.asupoly.ser422.jdbcex.ScrollUpdateRS <driver><url><user><passwd><query><update string>");
 	    System.exit(0);
 	}
 
@@ -54,7 +55,7 @@ public class ScrollUpdateRS {
 	    if (!rs.isBeforeFirst() && !rs.isAfterLast()) {
 		rs.updateInt(1, Integer.parseInt(args[5]));
 		rs.updateRow();
-		Cst533DbUtils.printResultSetRow(rs);
+		Ser422DbUtils.printResultSetRow(rs);
 	    }
 	}
 	catch (Exception se) {
@@ -80,12 +81,12 @@ public class ScrollUpdateRS {
 	else if (rs.isFirst()) {
 	    System.out.println("You are at the first row");
 	    // let's output this row
-	    Cst533DbUtils.printResultSetRow(rs);
+	    Ser422DbUtils.printResultSetRow(rs);
 	}
 	else if (rs.isLast()) {
 	    System.out.println("You are at the last row");
 	    // let's output this row
-	    Cst533DbUtils.printResultSetRow(rs);
+	    Ser422DbUtils.printResultSetRow(rs);
 	}
 	else if (rs.isAfterLast()) {
 	    System.out.println("You are after the last row");
@@ -93,7 +94,7 @@ public class ScrollUpdateRS {
 	else {
 	    System.out.println("You are so lost dude...");
 	    // let's output this row
-	    Cst533DbUtils.printResultSetRow(rs);
+	    Ser422DbUtils.printResultSetRow(rs);
 	}
     }
 }    

@@ -1,26 +1,26 @@
-package edu.asupoly.cst533;
+package edu.asupoly.ser422;
 
 import java.io.IOException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.sql.Timestamp;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
-import org.postgresql.*;
+
 import org.postgresql.largeobject.*;
 
-import edu.asupoly.cst533.Cst533DbWrapperException;
-import edu.asupoly.cst533.Cst533DbUtils;
+import edu.asupoly.ser422.Ser422DbUtils;
+import edu.asupoly.ser422.Ser422DbWrapperException;
 
 public final class XRayLOBPostgresImpl implements IXRayService {
     private static final int __BUFSIZE = 2048;
 
-    public boolean readXRayImage(int id, File outfile)
-            throws Cst533DbWrapperException {
+    @SuppressWarnings("deprecation")
+	public boolean readXRayImage(int id, File outfile)
+            throws Ser422DbWrapperException {
         byte[] buf = new byte[__BUFSIZE];
 
         if (outfile.exists() && !outfile.canWrite()) {
@@ -28,7 +28,7 @@ public final class XRayLOBPostgresImpl implements IXRayService {
         }
         FileOutputStream os = null;
         boolean oldAutoCommit = false;
-        Connection conn = Cst533DbUtils.getConnection("kgary", "blah", "jdbc:postgresql://localhost/lobtest", "org.postgresql.Driver");
+        Connection conn = Ser422DbUtils.getConnection("kgary", "blah", "jdbc:postgresql://localhost/lobtest", "org.postgresql.Driver");
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         LargeObjectManager lobj = null;
@@ -37,7 +37,7 @@ public final class XRayLOBPostgresImpl implements IXRayService {
             os = new FileOutputStream(outfile);
         }
         catch (IOException ie) {
-            throw new Cst533DbWrapperException(ie);
+            throw new Ser422DbWrapperException(ie);
         }
         try {
             oldAutoCommit = conn.getAutoCommit();
@@ -69,17 +69,17 @@ public final class XRayLOBPostgresImpl implements IXRayService {
             pstmt.close();
             pstmt = null;
             conn.setAutoCommit(oldAutoCommit);
-            Cst533DbUtils.releaseConnection(conn);
+            Ser422DbUtils.releaseConnection(conn);
             conn = null;
             return true;
         } catch (IOException ie) {
             System.err.println("IO Exception reading Xray with id: " + id
                     + ", message: " + ie.getMessage());
-            throw new Cst533DbWrapperException(ie);
+            throw new Ser422DbWrapperException(ie);
         } catch (SQLException se) {
             System.err.println("SQL Exception reading Xray with id: " + id
                     + ", message: " + se.getMessage());
-            throw new Cst533DbWrapperException(se);
+            throw new Ser422DbWrapperException(se);
         } finally {
             try {
                 if (os != null)
@@ -108,7 +108,7 @@ public final class XRayLOBPostgresImpl implements IXRayService {
             try {
                 if (conn != null) {
                     conn.setAutoCommit(oldAutoCommit);
-                    Cst533DbUtils.releaseConnection(conn);
+                    Ser422DbUtils.releaseConnection(conn);
                     conn = null;
                 }
             } catch (Throwable t4) {
@@ -119,15 +119,16 @@ public final class XRayLOBPostgresImpl implements IXRayService {
     }
 
     public boolean readXRayDiagnosis(int id, File file)
-            throws Cst533DbWrapperException {
+            throws Ser422DbWrapperException {
         return false;
     }
 
-    public boolean writeXRayImage(int id, File file)
-            throws Cst533DbWrapperException {
+    @SuppressWarnings("deprecation")
+	public boolean writeXRayImage(int id, File file)
+            throws Ser422DbWrapperException {
         FileInputStream fis = null;
         PreparedStatement ps = null;
-        Connection conn = Cst533DbUtils.getConnection("kgary", "blah", "jdbc:postgresql://localhost/lobtest", "org.postgresql.Driver");
+        Connection conn = Ser422DbUtils.getConnection("kgary", "blah", "jdbc:postgresql://localhost/lobtest", "org.postgresql.Driver");
         boolean oldAutoCommit = true;
         LargeObjectManager lobj = null;
         LargeObject obj = null;
@@ -147,10 +148,9 @@ public final class XRayLOBPostgresImpl implements IXRayService {
             fis = new FileInputStream(file);
             // copy the data from the file to the large object
             byte buf[] = new byte[2048];
-            int s, tl = 0;
+            int s = 0;
             while ((s = fis.read(buf, 0, 2048)) > 0)  {
                 obj.write(buf, 0, s);
-                tl += s;
             }
 
             // Close the large object
@@ -172,10 +172,10 @@ public final class XRayLOBPostgresImpl implements IXRayService {
             ps = null;
 
             conn.setAutoCommit(oldAutoCommit);
-            Cst533DbUtils.releaseConnection(conn);
+            Ser422DbUtils.releaseConnection(conn);
             conn = null;
         } catch (Throwable t) {
-            throw new Cst533DbWrapperException(
+            throw new Ser422DbWrapperException(
                     "XRayLOBStandardImpl::writeXRayImage", t);
         } finally {
             try {
@@ -190,7 +190,7 @@ public final class XRayLOBPostgresImpl implements IXRayService {
             try {
                 if (conn != null) {
                     conn.setAutoCommit(oldAutoCommit);
-                    Cst533DbUtils.releaseConnection(conn);
+                    Ser422DbUtils.releaseConnection(conn);
                     conn = null;
                 }
             } catch (Throwable t4) {
@@ -201,7 +201,7 @@ public final class XRayLOBPostgresImpl implements IXRayService {
     }
 
     public boolean writeXRayDiagnosis(int id, File file)
-            throws Cst533DbWrapperException {
+            throws Ser422DbWrapperException {
         return false;
     }
 

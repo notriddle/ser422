@@ -1,7 +1,6 @@
-package edu.asupoly.cst533.jdbcex;
+package edu.asupoly.ser422.jdbcex;
 
 import java.sql.*;
-import java.net.*;
 
 /*
 This sample program connects to the database at the given URL and makes the specified query.
@@ -17,7 +16,7 @@ public class DeptQueryMetaData
 
 	if (args.length != 4)
 	    {
-		System.out.println("USAGE: java edu.asupoly.cst533.jdbcex.DeptQuery <url> <user> <passwd> <driver>");
+		System.out.println("USAGE: java edu.asupoly.ser422.jdbcex.DeptQuery <url> <user> <passwd> <driver>");
 		System.exit(0);
 	    }
 	String _url = args[2];
@@ -39,7 +38,6 @@ public class DeptQueryMetaData
 
 	    // Step 5.1: Get the column header info for report writing
 	    int numColumns = metaData.getColumnCount();
-	    int[] colWidth = new int[numColumns];
 	    for (int i=1; i <= numColumns; i++)
 		System.out.print(metaData.getColumnLabel(i) + "\t");
 	    System.out.println("");
