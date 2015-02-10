@@ -13,7 +13,7 @@ public final class Ser422DbUtils {
 	{
 		// read info from default properties if needed
 		//	return getConnection(jdbcUser, jdbcPasswd, jdbcURL, jdbcDriver);
-		String url = "jdbc:postgresql://lead1.poly.asu.edu:5432/patient";
+		String url = "jdbc:postgresql://localhost:5432/patient";
 		Properties props = new Properties();
 		props.setProperty("user", "ser422");
 		props.setProperty("password", "database");
