@@ -1,3 +1,6 @@
+// Example from Brad Dayley
+// https://github.com/bwdbooks/nodejs-mongodb-angularjs-web-development
+
 var fs = require('fs');
 fs.stat('file_stats.js', function (err, stats) {
   if (!err){

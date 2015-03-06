@@ -1,0 +1,18 @@
+{
+  "name": "ser422lab3",
+  "version": "1.0.0",
+  "description": "Simple teammate finder app for ser422 lab3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rahul Parekh (asurite: rbparekh)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.0",
+    "ejs": "*",
+    "body-parser": "*",    
+    "cookie-parser": "*",
+    "express-session": "*"
+  }
+}

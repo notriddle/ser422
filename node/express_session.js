@@ -1,3 +1,6 @@
+// Example from Brad Dayley
+// https://github.com/bwdbooks/nodejs-mongodb-angularjs-web-development
+
 var express = require('express');
 var cookieParser = require('cookie-parser');
 //var session = require('cookie-session');

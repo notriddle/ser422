@@ -1,3 +1,6 @@
+// Example from Brad Dayley
+// https://github.com/bwdbooks/nodejs-mongodb-angularjs-web-development
+
 var fs = require('fs');
 fs.exists('filesystem.js', function (exists) {
   console.log(exists ? "Path Exists" : "Path Does Not Exist");

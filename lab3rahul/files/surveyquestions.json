@@ -1,0 +1,38 @@
+[
+    {
+        "question": "What is your name?",
+        "options": [
+            "Lancelot",
+            "Arthur",
+            "Guineviere"
+        ]
+    },
+    {
+        "question": "What is your quest?",
+        "options": [
+            "To find the Grail",
+            "To slay the rabbit",
+            "To find the Knights who say Ni!"
+        ]
+    },
+    {
+        "question": "What is your favorite color?",
+        "options": [
+            "Blue",
+            "Red",
+            "I don't know"
+        ]
+    },
+    {
+        "question": "What is the capital of Assyria?",
+        "options": [
+            "I don't know that!"
+        ]
+    },    
+    {
+        "question": "What... is the air-speed velocity of an unladen swallow?",
+        "options": [
+           "I don't know that!"
+        ]
+    }
+]

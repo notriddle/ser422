@@ -1,3 +1,6 @@
+// Example from Brad Dayley
+// https://github.com/bwdbooks/nodejs-mongodb-angularjs-web-development
+
 var fs = require('fs');
 fs.mkdir("./data/folderA", function(err){
   fs.mkdir("./data/folderA/folderB", function(err){
